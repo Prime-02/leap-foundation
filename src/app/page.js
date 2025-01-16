@@ -2,10 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { LandingPageTexts } from "@/components";
 import BG1 from '../../public/assets/toWEBP/img1.webp'
-import BG2 from '../../public/assets/toWEBP/img2.webp'
-import './masking.css'
+import BG3 from '../../public/assets/toWEBP/img9.webp'
+import Blob from '../../public/assets/svg/bob1.svg'
+import { LandingPageTexts } from "@/components/index/Index";
 
 const page = () => {
   return (
@@ -32,21 +32,28 @@ const page = () => {
       <main className="md:flex hidden flex-row justify-between items-center w-full h-screen ">
         <section className="h-full flex justify-center mr-5 w-1/2 items-center">
           <motion.div
-            initial={{ translateX: -200 }}
+            initial={{ translateX: -600 }}
             whileInView={{ translateX: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-fit text-start mx-auto space-y-5 max-w-xl"
+            transition={{ duration: 1 }}
+            className="w-fit text-start mx-auto space-y-2 max-w-xl"
           >
             <h1 className="text-4xl uppercase">
               {LandingPageTexts.heading.split(" ").slice(0, -4).join(" ")}
               <br />
-              <span className="text-4xl bg-gradient-to-r from-amber-800 to-amber-900 text-transparent bg-clip-text font-extrabold">
+              <span className="text-4xl bg-gradient-to-r from-green-800 to-green-900 text-transparent bg-clip-text font-extrabold relative">
                 {LandingPageTexts.heading.split(" ").slice(-4).join(" ")}
+                {/* <Image
+                src={Blob}
+                alt=""
+                className="absolute rotate-45 top-0"
+                width={100}
+                height={100}
+                /> */}
               </span>
             </h1>
 
-            <p className="text-sm font-bold tracking-tight">
-              {LandingPageTexts.heading}
+            <p className="text-lg tracking-tight">
+              {LandingPageTexts.subHeading}
             </p>
           </motion.div>
         </section>
@@ -54,12 +61,12 @@ const page = () => {
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="h-full w-1/2 flex items-center justify-center"
+          className="h-full w-1/2 relative flex items-center justify-center mask1"
         >
           <Image
-            src={BG2}
-            alt=""
-            className="w-full h-full object-cover  rounded-t-full"
+          src={BG3}
+          alt=""
+          className="w-full h-full"
           />
         </motion.div>
       </main>
