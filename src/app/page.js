@@ -2,74 +2,132 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import BG1 from '../../public/assets/toWEBP/img1.webp'
-import BG3 from '../../public/assets/toWEBP/img9.webp'
-import Blob from '../../public/assets/svg/bob1.svg'
-import { LandingPageTexts } from "@/components/index/Index";
+import BG1 from "../../public/assets/toWEBP/img1.webp";
+import BG3 from "../../public/assets/toWEBP/img9.webp";
+import { Blobs, LandingPageTexts } from "@/components/index/Index";
+import { MessageCircleQuestion, PlayCircle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import FirstSubContent from "@/components/pageContents/landingPageContents/FirstSubContent";
+import SecondSubContent from "@/components/pageContents/landingPageContents/SecondSubContent";
+import ThirdSubComponent from "@/components/pageContents/landingPageContents/ThirdSubComponent";
+import FourthSubComponent from "@/components/pageContents/landingPageContents/FourthSubComponent";
+import FifthSubComponent from "@/components/pageContents/landingPageContents/FifthSubComponent";
+import { Button } from "@/components/reusables/buttons/Buttons";
+import SixthSubComponent from "@/components/pageContents/landingPageContents/SixthSubComponent";
 
 const page = () => {
+  const nav = useRouter();
+
   return (
     <>
-      <main className="h-screen bg-black flex justify-center items-center w-full md:hidden relative">
+      {/* Mobile View */}
+      <main className="h-screen overflow-x-hidden bg-black flex justify-center items-center w-full md:hidden relative">
         <Image
           src={BG1}
-          className="opacity-45"
           alt="Background Image"
           layout="fill"
-          objectFit="cover" // Ensures the image covers the container
-          priority // Ensures faster loading for this critical image
+          objectFit="cover"
+          priority
+          className="absolute top-0 left-0 w-full h-full opacity-60"
         />
-        <section className="font-bold z-10 w-fit p-5">
+        <div className="absolute inset-0 bg-black bg-opacity-30 z-10" />
+        <section className="font-bold z-20 w-fit p-5">
           <div className="text-start text-white space-y-5 max-w-xl">
             <h1 className="text-4xl">{LandingPageTexts.heading}</h1>
-            <p className="font-thin tracking-wide text-sm">
+            <p className="font-light tracking-wide text-sm">
               {LandingPageTexts.subHeading}
             </p>
+          </div>
+          <div className="flex flex-col gap-y-1 mt-4 gap-x-4">
+            <Button
+              onClick={() => nav.push("/about")}
+              text="Want To Know More about Us"
+              clasName={"w-fit"}
+              icon={<MessageCircleQuestion />}
+            />
+            <Button
+              reverse
+              onClick={() => nav.push("/events")}
+              text="View Past Events"
+              clasName={"w-fit"}
+              icon={<PlayCircle />}
+            />
           </div>
         </section>
       </main>
 
-      <main className="md:flex hidden flex-row justify-between items-center w-full h-screen ">
-        <section className="h-full flex justify-center mr-5 w-1/2 items-center">
+      {/* Desktop View */}
+      <main className="hidden md:flex flex-row justify-between items-center w-full h-screen">
+        {/* Text Section */}
+        <section className="h-full flex justify-center mr-5 w-1/2 items-center px-10 relative">
+        <Image
+        src={Blobs[1]}
+        alt=""
+        width={300}
+        height={300}
+        className="absolute top-0 right-0 "
+        />
+        <Image
+        src={Blobs[4]}
+        alt=""
+        width={300}
+        height={300}
+        className="absolute right-0 -z-10 bottom-0 "
+        />
           <motion.div
-            initial={{ translateX: -600 }}
-            whileInView={{ translateX: 0 }}
-            transition={{ duration: 1 }}
-            className="w-fit text-start mx-auto space-y-2 max-w-xl"
+            initial={{ translateX: -100 }}
+            animate={{ translateX: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="space-y-6 max-w-lg"
           >
-            <h1 className="text-4xl uppercase">
+            <h1 className="text-5xl font-bold uppercase">
               {LandingPageTexts.heading.split(" ").slice(0, -4).join(" ")}
               <br />
-              <span className="text-4xl bg-gradient-to-r from-green-800 to-green-900 text-transparent bg-clip-text font-extrabold relative">
+              <span className="bg-gradient-to-r from-green-800 to-green-900 text-transparent bg-clip-text">
                 {LandingPageTexts.heading.split(" ").slice(-4).join(" ")}
-                {/* <Image
-                src={Blob}
-                alt=""
-                className="absolute rotate-45 top-0"
-                width={100}
-                height={100}
-                /> */}
               </span>
             </h1>
-
-            <p className="text-lg tracking-tight">
+            <p className="text-lg tracking-wide text-gray-700">
               {LandingPageTexts.subHeading}
             </p>
+            <div className="flex gap-x-4">
+              <Button
+                onClick={() => nav.push("/about")}
+                text="Want To Know More about Us"
+                icon={<MessageCircleQuestion />}
+              />
+              <Button
+                reverse
+                onClick={() => nav.push("/events")}
+                text="View Past Events"
+                icon={<PlayCircle />}
+              />
+            </div>
           </motion.div>
         </section>
+
+        {/* Image Section */}
         <motion.div
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="h-full w-1/2 relative flex items-center justify-center mask1"
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="h-full w-1/2 relative flex items-center justify-center mask1 bg-black"
         >
           <Image
-          src={BG3}
-          alt=""
-          className="w-full h-full"
+            src={BG3}
+            alt="Inspiring Image"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
           />
         </motion.div>
       </main>
+
+      {/* Sub-Content Sections */}
+      <FirstSubContent />
+      <SecondSubContent />
+      <ThirdSubComponent />
+      <FourthSubComponent />
+      <FifthSubComponent />
+      <SixthSubComponent/>
     </>
   );
 };
