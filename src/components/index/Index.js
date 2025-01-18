@@ -318,3 +318,76 @@ export const LeapFoundationEvents = [
     image: "/assets/toWEBP/img (26).webp",
   },
 ];
+
+export const AboutLeapFoundation = {
+  title: "About Leap Foundation",
+  mission:
+    "The Leap Foundation is a dynamic, non-profit organization dedicated to transforming lives through the power of education. Founded on the belief that every child, regardless of their socioeconomic background, deserves an equal opportunity to learn, grow, and succeed, the Leap Foundation works tirelessly to bridge the educational gap in underserved communities around the globe.",
+  vision:
+    "Our mission is simple yet profound: to empower children, youth, and educators by providing access to quality education, essential resources, and innovative learning opportunities. We envision a world where every child can unlock their full potential, break free from the cycle of poverty, and contribute meaningfully to society.",
+  coreFocusAreas: [
+    {
+      title: "Access to Quality Education",
+      description:
+        "At the heart of our work is the commitment to ensure that education is not a privilege but a right. We establish schools in underserved regions, provide scholarships to children from low-income families, and develop transportation solutions to ensure that geographical barriers do not hinder learning.",
+    },
+    {
+      title: "Educational Support Programs",
+      description:
+        "To enhance learning outcomes, we offer comprehensive tutoring services, early childhood education programs, and special needs education support. These initiatives are designed to create a nurturing environment where students can thrive academically and personally.",
+    },
+    {
+      title: "Teacher Training and Development",
+      description:
+        "We believe that teachers are the backbone of education. By providing extensive training in innovative teaching methodologies, mental health awareness, and digital literacy, we empower educators to create engaging and inclusive classrooms.",
+    },
+    {
+      title: "Infrastructure and Learning Resources",
+      description:
+        "Recognizing the importance of a conducive learning environment, we equip schools with essential materials such as books, stationery, and digital devices. Our efforts also include building libraries, digital learning hubs, and providing tools for interactive learning.",
+    },
+    {
+      title: "Holistic Child Development",
+      description:
+        "Beyond academics, we focus on the overall well-being of children. Through life skills training, health and nutrition programs, and psychosocial support, we ensure that students are equipped to succeed in all aspects of life.",
+    },
+    {
+      title: "Vocational Training and Non-Formal Education",
+      description:
+        "For youth and children who have missed out on foundational education, we offer vocational training programs in skills such as carpentry, sewing, and technology. These programs open doors to new opportunities and empower individuals to build sustainable livelihoods.",
+    },
+    {
+      title: "Advocacy and Community Engagement",
+      description:
+        "We work closely with parents, local leaders, and policymakers to raise awareness about the importance of education and to reduce dropout rates. Our advocacy campaigns aim to shape policies that prioritize education and child welfare.",
+    },
+  ],
+  impact:
+    "Over the years, the Leap Foundation has reached thousands of children and families, transforming communities through education. From building schools in remote villages to launching digital learning hubs in urban slums, our programs have made a lasting impact. By focusing on both immediate educational needs and long-term systemic change, we are creating pathways to brighter futures.",
+  whyWeDoIt:
+    "Education is more than just a tool for personal success; it is a catalyst for societal change. By equipping individuals with knowledge and skills, we foster innovation, reduce inequality, and build stronger, more resilient communities. At Leap Foundation, we are driven by the belief that an educated world is a better world—for everyone.",
+  getInvolved: [
+    {
+      title: "Volunteer",
+      description:
+        "Join us in making a direct impact by volunteering your time and skills to support our programs.",
+    },
+    {
+      title: "Donate",
+      description:
+        "Your generous contributions help us provide scholarships, resources, and infrastructure to children in need.",
+    },
+    {
+      title: "Advocate",
+      description:
+        "Raise awareness and advocate for policies that prioritize education and child welfare.",
+    },
+    {
+      title: "Partner",
+      description:
+        "Collaborate with us as a corporate or organizational partner to expand the reach of our initiatives.",
+    },
+  ],
+  closingNote:
+    "Together, we can leap over barriers and build a future where education is the cornerstone of equality, opportunity, and progress. Join us on this journey to empower dreams, one child at a time.",
+};
