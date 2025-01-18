@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { RiInstagramLine } from "react-icons/ri";
+import { navItems } from "../index/Index";
 
 const Footer = () => {
   return (
@@ -54,23 +55,13 @@ const Footer = () => {
 
           {/* Legal Links */}
           <div className="w-full sm:w-1/2 mb-8 sm:mb-0">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4">Legal</h3>
-            <ul className="list-none space-y-2">
-              <li>
-                <Link href="/terms-of-services" className=" hover:text-white">
-                  Terms of Services
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4">Links</h3>
+            <ul className="list-none flex flex-col  space-y-2">
+              {navItems.map((link, i) => (
+                <Link href={link.href} key={i} className="hover:underline w-fit">
+                  {link.name}
                 </Link>
-              </li>
-              <li>
-                <Link href="/privacy-policy" className=" hover:text-white">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookie-policy" className=" hover:text-white">
-                  Cookie Policy
-                </Link>
-              </li>
+              ))}
             </ul>
           </div>
         </div>

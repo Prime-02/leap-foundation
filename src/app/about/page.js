@@ -78,7 +78,7 @@ const AboutPage = () => {
       </section>
 
       {/* Get Involved Section */}
-      <section className="py-16 bg-green-800 text-white">
+      <section className="py-16 bg-green-900 text-white">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-8">Get Involved</h2>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -97,30 +97,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Closing Note */}
-      <footer className="py-16 bg-gray-900 text-white">
-        <div className="container mx-auto px-6 flex flex-col items-center">
-          {/* Image Section */}
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="w-full md:w-1/2 relative flex items-center justify-center overflow-hidden rounded-lg shadow-lg mb-8"
-          >
-            <Image
-              src={BG3}
-              alt="Inspiring Image"
-              className="w-full h-full object-cover"
-              priority
-            />
-          </motion.div>
-          {/* Closing Note Text */}
-          <p className="text-lg text-center max-w-3xl">
-            {AboutLeapFoundation.closingNote}
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
