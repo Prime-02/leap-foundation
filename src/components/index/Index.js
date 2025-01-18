@@ -18,7 +18,7 @@ export const leapFoundationContent = {
       {
         heading: "Mission",
         text: "To provide children in Africa with the tools, knowledge, and opportunities they need to build successful futures through education.",
-        image1: "/assets/toWEBP/img5.webp",
+        image1: "/assets/toWEBP/img (2).webp",
         cta: {
           label: "Our Services",
           href: "/services",
@@ -27,7 +27,7 @@ export const leapFoundationContent = {
       {
         heading: "Vision",
         text: "A world where every child, regardless of their background, has access to quality education and a chance to thrive.",
-        image1: "/assets/toWEBP/img4.webp",
+        image1: "/assets/toWEBP/img (13).webp",
         cta: {
           label: "Our Events",
           href: "/events",
@@ -45,11 +45,11 @@ export const leapFoundationContent = {
       "Educating girls in particular leads to stronger, healthier communities.",
     ],
     callToAction: "Let’s Change These Numbers Together.",
-    image: "/assets/toWEBP/img1.webp",
+    image: "/assets/toWEBP/img (10).webp",
   },
   ourImpact: {
     title: "Making a Difference, One Child at a Time",
-    image: "/assets/toWEBP/img7.webp",
+    image: "/assets/toWEBP/img (7).webp",
     statistics: [
       "50+ schools built across rural areas.",
       "10,000+ children supported with scholarships.",
@@ -61,7 +61,7 @@ export const leapFoundationContent = {
       story:
         "Meet Amina, a 12-year-old who walked 5 miles daily to attend school. Thanks to our supporters, she now studies in a local school built by Leap Foundation and dreams of becoming a doctor.",
     },
-    image: "/assets/toWEBP/img5.webp",
+    image: "/assets/toWEBP/img (15).webp",
   },
   programs: {
     title: "How We Empower Communities",
@@ -117,15 +117,47 @@ export const leapFoundationContent = {
   testimonials: {
     title: "Hear From Those You’ve Helped",
     quotes: [
-      {
-        text: "I never thought I’d be able to go to school. Now, I’m learning every day and dream of becoming a teacher.",
-        author: "Joy, 9 years old, Lagos, Ngeria",
-      },
-      {
-        text: "This NGO has transformed our village. Our children now have a school, and hope has returned to our community.",
-        author: "Ibrahim, Village Leader, Kano, Ngeria",
-      },
-    ],
+  {
+    text: "Thanks to the support I received, I was able to start my own business and provide for my family.",
+    author: "Amina, Entrepreneur, Kaduna, Nigeria",
+  },
+  {
+    text: "Education has changed my life. I now have the confidence to pursue my dreams and inspire others.",
+    author: "Emeka, Student, Enugu, Nigeria",
+  },
+  {
+    text: "The healthcare program saved my child's life. I will forever be grateful for their kindness and support.",
+    author: "Fatima, Mother, Maiduguri, Nigeria",
+  },
+  {
+    text: "Clean water has brought new life to our village. Our children are healthier, and we are thriving.",
+    author: "Yusuf, Farmer, Sokoto, Nigeria",
+  },
+  {
+    text: "I never imagined I would get a chance to learn how to read and write. Now, I can help my children with their schoolwork.",
+    author: "Maryam, 32 years old, Gombe, Nigeria",
+  },
+  {
+    text: "Access to vocational training has given me a future I never thought possible. I can now provide for my siblings.",
+    author: "Chukwuma, Tailor, Aba, Nigeria",
+  },
+  {
+    text: "The mentorship program has helped me see a brighter future and set goals I never thought I could achieve.",
+    author: "Ngozi, Secondary School Student, Owerri, Nigeria",
+  },
+  {
+    text: "With the scholarship I received, I became the first in my family to attend university. My dream of becoming an engineer is now a reality.",
+    author: "Adamu, Engineering Student, Zaria, Nigeria",
+  },
+  {
+    text: "The microfinance program empowered me to start my poultry business. Today, I employ five people in my community.",
+    author: "Grace, Business Owner, Uyo, Nigeria",
+  },
+  {
+    text: "After receiving training, I now teach others about sustainable farming. Together, we are transforming our community.",
+    author: "Baba, Agricultural Trainer, Jos, Nigeria",
+  },
+]
   },
   gallery: {
     title: "See the Change You’re Creating",
@@ -159,9 +191,57 @@ export const Blobs = [
   '/assets/svg/blob3.svg',
   '/assets/svg/blob4.svg',
   '/assets/svg/blob5.svg',
-  '/assets/svg/blob6.svg',
-  '/assets/svg/blob7.svg',
-  '/assets/svg/blob8.svg',
-  '/assets/svg/blob9.svg',
-  '/assets/svg/blob10.svg',
+  // '/assets/svg/blob6.svg',
+  // '/assets/svg/blob7.svg',
+  // '/assets/svg/blob8.svg',
+  // '/assets/svg/blob9.svg',
+  // '/assets/svg/blob10.svg',
 ]
+
+export const LPServices = [
+  {
+    title: "Access to Education",
+    description:
+      "Leap Foundation builds schools in underserved areas, provides scholarships to children from low-income families, and offers transportation solutions to ensure every child can access education.",
+  },
+  {
+    title: "Educational Support",
+    description:
+      "We offer tutoring programs to help students excel, provide resources for special needs education, and run early childhood education programs to build strong learning foundations.",
+  },
+  {
+    title: "Teacher Training and Development",
+    description:
+      "Leap Foundation trains educators in innovative teaching methods, supplies teaching aids, and empowers local community members to become educators in resource-constrained areas.",
+  },
+  {
+    title: "Infrastructure and Resources",
+    description:
+      "Our organization equips schools with essential materials like books, stationery, and digital devices. We also establish libraries and digital learning hubs to enhance educational opportunities.",
+  },
+  {
+    title: "Holistic Child Development",
+    description:
+      "We focus on life skills training, health and nutrition programs, and psychosocial support to ensure children are prepared for success in and out of the classroom.",
+  },
+  {
+    title: "Advocacy and Awareness",
+    description:
+      "Leap Foundation promotes the importance of education through community campaigns, engages parents and leaders to reduce dropout rates, and advocates for improved education policies.",
+  },
+  {
+    title: "Vocational and Non-formal Education",
+    description:
+      "We offer vocational training in areas like sewing, carpentry, and technology, along with literacy and numeracy programs for children who missed foundational education.",
+  },
+  {
+    title: "Emergency and Crisis Response",
+    description:
+      "In times of crisis, Leap Foundation sets up temporary schools, distributes education kits, and supports reintegration for displaced or vulnerable children.",
+  },
+  {
+    title: "Monitoring and Evaluation",
+    description:
+      "We track children's academic and personal progress, conduct research to identify barriers, and refine our programs to maximize impact.",
+  },
+];

@@ -87,7 +87,9 @@ const FirstSubContent = () => {
               >
                 {/* Text Section */}
                 <motion.div
-                  className="flex-1 text-center md:text-left md:px-6"
+                  className={`flex-1 text-center  md:px-6 ${
+                    i % 2 === 0 ? "md:text-right" : "md:text-left"
+                  }`}
                   variants={containerVariants}
                 >
                   <h3 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">
@@ -98,7 +100,7 @@ const FirstSubContent = () => {
                   </p>
                   <div
                     className={`flex ${
-                      i % 2 === 0 ? "md:justify-end" : "md:justify-start"
+                      i % 2 === 0 ? "md:justify-end " : "md:justify-start"
                     } justify-center`}
                   >
                     <Button

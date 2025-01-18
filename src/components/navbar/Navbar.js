@@ -81,7 +81,7 @@ const NavTwo = () => {
               <Link
                 href={item.href}
                 key={index}
-                className="text-black font-medium hover:text-amber-600 transition-colors"
+                className="text-black font-medium hover:text-green-800 transition-colors"
               >
                 {item.name}
               </Link>

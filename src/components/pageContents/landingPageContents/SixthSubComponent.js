@@ -20,7 +20,7 @@ const SixthSubComponent = () => {
   };
 
   return (
-    <main className="w-full flex flex-col items-center justify-center overflow-hidden py-16 px-5 bg-gray-50">
+    <main className="w-full flex flex-col items-center justify-center overflow-hidden py-16 px-5 bg-gray-50 h-auto min-h-screen">
       {/* Title */}
       <motion.h2
         initial="hidden"
@@ -40,7 +40,11 @@ const SixthSubComponent = () => {
         variants={containerVariants}
         className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl"
       >
-        {leapFoundationContent.testimonials.quotes.map((quote, index) => (
+        {leapFoundationContent.
+        testimonials.
+        quotes.
+        slice(0,6).
+        map((quote, index) => (
           <motion.div
             key={index}
             variants={itemVariants}

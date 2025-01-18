@@ -2,8 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import BG1 from "../../public/assets/toWEBP/img1.webp";
-import BG3 from "../../public/assets/toWEBP/img9.webp";
+import BG1 from "../../public/assets/toWEBP/img (1).webp";
+import BG3 from "../../public/assets/toWEBP/img (9).webp";
 import { Blobs, LandingPageTexts } from "@/components/index/Index";
 import { MessageCircleQuestion, PlayCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
