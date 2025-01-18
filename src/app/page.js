@@ -57,40 +57,40 @@ const page = () => {
       </main>
 
       {/* Desktop View */}
-      <main className="hidden md:flex flex-row justify-between items-center w-full h-screen">
+      <main className="hidden md:flex flex-row py-12 justify-center items-center w-full h-screen">
         {/* Text Section */}
-        <section className="h-full flex justify-center mr-5 w-1/2 items-center px-10 relative">
-        <Image
-        src={Blobs[1]}
-        alt=""
-        width={300}
-        height={300}
-        className="absolute top-0 right-0 "
-        />
-        <Image
-        src={Blobs[4]}
-        alt=""
-        width={300}
-        height={300}
-        className="absolute right-0 -z-10 bottom-0 "
-        />
+        <section className="h-full flex justify-center mr-5 items-center px-10 relative">
+          <Image
+            src={Blobs[1]}
+            alt=""
+            width={300}
+            height={300}
+            className="absolute top-0 right-0 "
+          />
+          <Image
+            src={Blobs[4]}
+            alt=""
+            width={300}
+            height={300}
+            className="absolute right-0 -z-10 bottom-0 "
+          />
           <motion.div
             initial={{ translateX: -100 }}
             animate={{ translateX: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="space-y-6 max-w-lg"
+            className="space-y-6 max-w-lg z-10 relative"
           >
-            <h1 className="text-5xl font-bold uppercase">
+            <h1 className="text-5xl font-bold uppercase mix-blend-overlay relative z-10">
               {LandingPageTexts.heading.split(" ").slice(0, -4).join(" ")}
               <br />
               <span className="bg-gradient-to-r from-green-800 to-green-900 text-transparent bg-clip-text">
                 {LandingPageTexts.heading.split(" ").slice(-4).join(" ")}
               </span>
             </h1>
-            <p className="text-lg tracking-wide text-gray-700">
+            <p className="text-lg tracking-wide text-gray-700 relative z-10">
               {LandingPageTexts.subHeading}
             </p>
-            <div className="flex gap-x-4">
+            <div className="flex gap-x-4 relative z-10">
               <Button
                 onClick={() => nav.push("/about")}
                 text="Want To Know More about Us"
@@ -111,7 +111,7 @@ const page = () => {
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="h-full w-1/2 relative flex items-center justify-center mask1 bg-black"
+          className="h-full w-1/2 relative flex items-center justify-center rounded-r-full overflow-hidden bg-black"
         >
           <Image
             src={BG3}
@@ -127,7 +127,7 @@ const page = () => {
       <ThirdSubComponent />
       <FourthSubComponent />
       <FifthSubComponent />
-      <SixthSubComponent/>
+      <SixthSubComponent />
     </>
   );
 };

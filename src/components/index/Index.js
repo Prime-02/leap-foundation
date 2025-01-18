@@ -203,45 +203,118 @@ export const LPServices = [
     title: "Access to Education",
     description:
       "Leap Foundation builds schools in underserved areas, provides scholarships to children from low-income families, and offers transportation solutions to ensure every child can access education.",
+    image: "/assets/toWEBP/img (10).webp",
   },
   {
     title: "Educational Support",
     description:
       "We offer tutoring programs to help students excel, provide resources for special needs education, and run early childhood education programs to build strong learning foundations.",
+    image: "/assets/toWEBP/img (11).webp",
   },
   {
     title: "Teacher Training and Development",
     description:
       "Leap Foundation trains educators in innovative teaching methods, supplies teaching aids, and empowers local community members to become educators in resource-constrained areas.",
+    image: "/assets/toWEBP/img (12).webp",
   },
   {
     title: "Infrastructure and Resources",
     description:
       "Our organization equips schools with essential materials like books, stationery, and digital devices. We also establish libraries and digital learning hubs to enhance educational opportunities.",
+    image: "/assets/toWEBP/img (13).webp",
   },
   {
     title: "Holistic Child Development",
     description:
       "We focus on life skills training, health and nutrition programs, and psychosocial support to ensure children are prepared for success in and out of the classroom.",
+    image: "/assets/toWEBP/img (14).webp",
   },
   {
     title: "Advocacy and Awareness",
     description:
       "Leap Foundation promotes the importance of education through community campaigns, engages parents and leaders to reduce dropout rates, and advocates for improved education policies.",
+    image: "/assets/toWEBP/img (15).webp",
   },
   {
     title: "Vocational and Non-formal Education",
     description:
       "We offer vocational training in areas like sewing, carpentry, and technology, along with literacy and numeracy programs for children who missed foundational education.",
+    image: "/assets/toWEBP/img (16).webp",
   },
   {
     title: "Emergency and Crisis Response",
     description:
       "In times of crisis, Leap Foundation sets up temporary schools, distributes education kits, and supports reintegration for displaced or vulnerable children.",
+    image: "/assets/toWEBP/img (17).webp",
   },
   {
     title: "Monitoring and Evaluation",
     description:
       "We track children's academic and personal progress, conduct research to identify barriers, and refine our programs to maximize impact.",
+    image: "/assets/toWEBP/img (18).webp",
+  },
+];
+
+
+export const LeapFoundationEvents = [
+  {
+    title: "Annual Education Summit",
+    description:
+      "An impactful gathering of educators, policymakers, and community leaders to discuss the latest trends and challenges in education. The summit includes keynote speeches, panel discussions, and workshops aimed at fostering innovation and collaboration in underserved areas.",
+    image: "/assets/toWEBP/img (18).webp",
+  },
+  {
+    title: "Community Learning Days",
+    description:
+      "Monthly events held in local communities where children, parents, and teachers come together to participate in educational activities. These events feature storytelling, science experiments, and interactive workshops to inspire a love for learning.",
+    video: "/assets/video/vid1.mp4",
+  },
+  {
+    title: "Teacher Empowerment Workshops",
+    description:
+      "A series of training sessions for educators, focusing on modern teaching techniques, mental health awareness, and the use of digital tools in classrooms. These workshops aim to equip teachers with skills to create engaging learning environments.",
+    image: "/assets/toWEBP/img (20).webp",
+  },
+  {
+    title: "Scholarship Award Ceremonies",
+    description:
+      "Special events where scholarships are awarded to deserving students from low-income families. These ceremonies celebrate academic excellence and provide financial support to help students achieve their educational goals.",
+    video: "/assets/video/vid2.mp4",
+  },
+  {
+    title: "School Infrastructure Drives",
+    description:
+      "Community-driven events to build and renovate schools in underserved areas. Volunteers and donors come together to contribute time, skills, and resources to create better learning environments.",
+    image: "/assets/toWEBP/img (21).webp",
+  },
+  {
+    title: "Health and Nutrition Camps",
+    description:
+      "Organized in partnership with healthcare professionals, these camps provide health checkups, nutrition workshops, and hygiene kits for children. The goal is to ensure that students are physically and mentally prepared for learning.",
+    video: "/assets/video/vid3.mp4",
+  },
+  {
+    title: "Youth Skill Development Fairs",
+    description:
+      "Interactive fairs offering vocational training sessions in areas like carpentry, sewing, and digital skills. These events empower young people to build practical skills that improve their career prospects.",
+    image: "/assets/toWEBP/img (23).webp",
+  },
+  {
+    title: "Education Advocacy Rallies",
+    description:
+      "Public events aimed at raising awareness about the importance of education. Parents, students, and community leaders march together to advocate for better education policies and reduced dropout rates.",
+    video: "/assets/video/vid4.mp4",
+  },
+  {
+    title: "Emergency Relief Education Drives",
+    description:
+      "During natural disasters or crises, the Leap Foundation organizes relief events to distribute education kits, set up temporary schools, and ensure continuity of learning for displaced children.",
+    image: "/assets/toWEBP/img (25).webp",
+  },
+  {
+    title: "Annual Fundraising Gala",
+    description:
+      "A prestigious event bringing together donors, corporate partners, and supporters to raise funds for the foundation’s projects. The evening includes inspiring stories from beneficiaries, entertainment, and opportunities to pledge support.",
+    image: "/assets/toWEBP/img (26).webp",
   },
 ];
