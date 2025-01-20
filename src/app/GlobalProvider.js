@@ -1,9 +1,8 @@
-
-'use client'
-import React, { createContext, useState, useEffect, useContext } from "react";
+"use client";
+import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getCurrentUser } from "../../lib/appwrite";
+import { GetAllPosts, getCurrentUser } from "../../lib/appwrite";
 import { useRouter } from "next/navigation";
 
 // Create context
@@ -14,30 +13,42 @@ const GlobalProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setIsLoading(true); // Indicate loading state
-        const res = await getCurrentUser();
-        if (res) {
-          setIsLoggedIn(true);
-          setUser(res);
-        } else {
-          setIsLoggedIn(false);
-          setUser(null);
-        }
-      } catch (error) {
-        console.error("Error fetching user:", error);
-        toast.error("Failed to fetch user. Redirecting to login.");
-        router.push("/");
-      } finally {
-        setIsLoading(false); // Reset loading state
+  const fetchUser = useCallback( async () => {
+    try {
+      setIsLoading(true); // Indicate loading state
+      const res = await getCurrentUser();
+      if (res) {
+        setIsLoggedIn(true);
+        setUser(res);
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching user:", error);
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
+  }, [])
 
-    fetchUser();
-      }, [user]); // Add `router` as a dependency to avoid warnings
+  const fetchPosts = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const data = await GetAllPosts();
+      setPosts(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [])
+
+  useEffect(()=>{
+    fetchPosts()
+  }, [posts])
+  
 
   return (
     <>
@@ -52,8 +63,11 @@ const GlobalProvider = ({ children }) => {
         draggable
         pauseOnHover
         theme="light"
+        limit={2}
       />
-      <GlobalStateContext.Provider value={{ isLoading, isLoggedIn, user }}>
+      <GlobalStateContext.Provider
+        value={{ isLoading, isLoggedIn, user, fetchUser, posts, fetchPosts }}
+      >
         {children}
       </GlobalStateContext.Provider>
     </>

@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { ButtonOne, ButtonTwo } from "../reusables/buttons/Buttons";
+import React, {useState } from "react";
 import Image from "next/image";
 import Logo from "../../../public/assets/toWEBP/logo.webp";
 import { navItems } from "../index/Index";
