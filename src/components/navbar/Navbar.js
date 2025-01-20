@@ -86,7 +86,7 @@ const NavTwo = () => {
               alt="Logo"
               className="object-cover rounded-full"
               fill
-              onClick={() => setLoginModal(!loginModal)}
+              onClick={() => setSignUpModal(!signUpModal)}
             />
           </div>
           <div className="flex items-center">
