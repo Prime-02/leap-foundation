@@ -18,7 +18,8 @@
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",
     "react-toastify": "^11.0.3",
-    "scroll-lock": "^2.1.5"
+    "scroll-lock": "^2.1.5",
+    "styled-components": "^6.1.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

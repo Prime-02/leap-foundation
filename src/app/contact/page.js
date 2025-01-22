@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React from "react";
+import { toast } from "react-toastify";
 
 const page = () => {
   return (
@@ -35,7 +36,7 @@ const page = () => {
               className="flex flex-col gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Form submitted! We will get back to you shortly.");
+                toast.info("Form submitted! We will get back to you shortly.");
               }}
             >
               <div>

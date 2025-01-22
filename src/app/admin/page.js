@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalState } from "../GlobalProvider";
 import FilePreview from "@/components/media/FilePreview";
 import { Edit, Trash } from "lucide-react";
@@ -7,9 +7,11 @@ import Modal from "@/components/Modal/Modal";
 import { deleteEvent, updateField } from "../../../lib/appwrite";
 import { Textinput } from "@/components/inputs/Textinput";
 import { Button } from "@/components/reusables/buttons/Buttons";
+import { toast } from "react-toastify";
+import { Loader } from "@/components/Loader/Loader";
 
 const Page = () => {
-  const { posts, user, fetchPosts } = useGlobalState(); // Add `fetchPosts` to refresh data
+  const { posts, user, fetchPosts, fetchUser } = useGlobalState(); // Add `fetchPosts` to refresh data
   const [currPage, setCurrPage] = useState(true);
   const [modal, setModal] = useState(false);
   const [docId, setDocId] = useState(null);
@@ -17,7 +19,6 @@ const Page = () => {
   const [docValue, setDocValue] = useState(""); // Store value to edit
   const [selectedFile, setSelectedFile] = useState(null); // Store selected file
   const [loading, setLoading] = useState(null);
-          
 
   // Function to open the modal for editing
   const openEditModal = (id, type, value) => {
@@ -28,6 +29,20 @@ const Page = () => {
     setModal(true);
   };
 
+  
+    useEffect(() => {
+      fetchUser();
+    }, [fetchUser]);
+  
+    // If the user is still loading or not available yet
+    if (!user) {
+      return (
+        <div className="w-full h-screen flex justify-center items-center">
+          <Loader/>
+        </div>
+      );
+    }
+
   // Function to handle file selection
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -36,7 +51,7 @@ const Page = () => {
   };
 
   const DeleteEvent = async (id) => {
-    setLoading('deleting'); // Set loading to true during delete
+    setLoading("deleting"); // Set loading to true during delete
     try {
       await deleteEvent(id);
       fetchPosts(); // Refresh posts after delete
@@ -52,10 +67,10 @@ const Page = () => {
     e.preventDefault();
     if (!docId || !docType) return;
 
-    setLoading(docType); 
+    setLoading(docType);
     try {
       if (docType === "fileUrl") {
-        if (!selectedFile) return alert("Please select a file to upload.");
+        if (!selectedFile) return toast.info("Please select a file to upload.");
 
         // Upload the file using the updateField function
         await updateField(docId, "fileUrl", null, selectedFile); // Update with the selected file
@@ -75,25 +90,30 @@ const Page = () => {
   return (
     <>
       {/* Navigation Bar */}
-      <nav className="w-full min-h-16 flex items-center justify-around relative bg-white shadow-md">
+      <nav className="w-full min-h-16 flex items-start justify-between pt-5 flex-col bg-white shadow-md">
+                  <h1 className="text-4xl text-center font-extrabold w-full text-green-800 mb-12">
+                    Events
+                  </h1>
+        <div className="w-full justify-around flex items-center">
         <div
           className={`cursor-pointer text-lg font-semibold ${
             !currPage ? "text-green-800" : "text-gray-500"
-          }`}
-          onClick={() => setCurrPage(false)}
-        >
+            }`}
+            onClick={() => setCurrPage(false)}
+            >
           All Posts
         </div>
         <div
           className={`cursor-pointer text-lg font-semibold ${
             currPage ? "text-green-800" : "text-gray-500"
-          }`}
-          onClick={() => setCurrPage(true)}
-        >
+            }`}
+            onClick={() => setCurrPage(true)}
+            >
           Your Posts
         </div>
+          </div>
         <span
-          className={`absolute w-1/2 h-1 rounded-full bg-green-800 bottom-0 left-0 transition-transform duration-500 
+          className={` w-1/2 h-1 rounded-full bg-green-800 bottom-0 left-0 transition-transform duration-500 
             ${currPage ? "translate-x-full" : "translate-x-0"}`}
         ></span>
       </nav>
@@ -110,7 +130,7 @@ const Page = () => {
           <div className="space-y-16">
             {posts
               .filter((event) =>
-                currPage ? event.admin.$id === user.$id : true
+                currPage ? event.admin?.$id === user?.$id : true
               )
               .map((event, index) => (
                 <div
@@ -121,11 +141,11 @@ const Page = () => {
                 >
                   {/* Media Section */}
                   <div className="w-full lg:w-1/2 rounded-2xl relative">
-                    {currPage && event.admin.$id === user.$id && (
+                    {currPage && event.admin?.$id === user?.$id && (
                       <span
                         className="absolute top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"
                         onClick={() =>
-                          openEditModal(event.$id, "fileUrl", event.fileUrl)
+                          openEditModal(event?.$id, "fileUrl", event.fileUrl)
                         }
                       >
                         <Edit size={15} />
@@ -136,38 +156,41 @@ const Page = () => {
 
                   {/* Text Section */}
                   <div className="w-full lg:w-1/2">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center relative">
                       <h3 className="text-3xl font-bold text-green-800 mb-4">
                         {event.title}
                       </h3>
-                      {currPage && event.admin.$id === user.$id && (
-                        <Edit
-                          size={20}
-                          className="text-green-800 cursor-pointer"
+                      {currPage && event.admin?.$id === user?.$id && (
+                        <span
+                          className="top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"
                           onClick={() =>
-                            openEditModal(event.$id, "title", event.title)
+                            openEditModal(event?.$id, "title", event.title)
                           }
-                        />
+                        >
+                          <Edit size={15} />
+                        </span>
                       )}
                     </div>
-                    <p className="text-gray-600 text-lg leading-relaxed relative">
+                    <p className="text-gray-600 text-lg leading-relaxed mb-5 relative">
                       {event.desc}
-                      {currPage && event.admin.$id === user.$id && (
-                        <Edit
-                          size={18}
-                          className="absolute top-0 right-0 text-green-800 cursor-pointer"
+                      {currPage && event.admin?.$id === user?.$id && (
+                        <span
+                          className="top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"
                           onClick={() =>
-                            openEditModal(event.$id, "desc", event.desc)
+                            openEditModal(event?.$id, "desc", event.desc)
                           }
-                        />
+                        >
+                          <Edit size={18} />
+                        </span>
                       )}
                     </p>
-                    {currPage && event.admin.$id === user.$id && (
+                    {currPage && event.admin?.$id === user?.$id && (
                       <Button
                         text={loading === "fileUrl" ? "Deleting..." : "Delete"}
                         icon={<Trash size={15} />}
-                        onClick={() => DeleteEvent(event.$id)}
+                        onClick={() => DeleteEvent(event?.$id)}
                         disabled={loading === "fileUrl"} // Disable delete if fileUrl update is in progress
+                        loading={loading === "deleting"}
                       />
                     )}
                   </div>
@@ -176,7 +199,7 @@ const Page = () => {
 
             {/* No Posts Fallback */}
             {posts.filter((event) =>
-              currPage ? event.admin.$id === user.$id : true
+              currPage ? event.admin?.$id === user?.$id : true
             ).length === 0 && (
               <p className="text-center text-gray-600 text-lg">
                 {currPage
@@ -193,7 +216,9 @@ const Page = () => {
         onClose={() => setModal(false)}
         isOpen={modal}
         title={`Update ${docType}`}
-        buttonValue={loading === docType ? "Loading..." : "Update"}
+        buttonValue={'Update'}
+        disabled={loading}
+        loading={loading}
         onSubmit={handleUpdate}
       >
         {docType === "fileUrl" ? (

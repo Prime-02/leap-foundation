@@ -14,7 +14,6 @@ const EventsPage = () => {
         </h1>
         <div className="space-y-16">
           {posts.map((event, index) => {
-            console.log(event?.fileUrl);
             return (
               <div
                 key={index}

@@ -1,14 +1,18 @@
+import { Loader } from "@/components/Loader/Loader";
 import React from "react";
 
 export const Button = ({
-  text = "Button",
+  text,
   clasName,
   onClick,
   icon,
   reverse,
+  disabled,
+  loading,
 }) => {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={` 
         ${clasName} 
@@ -20,8 +24,14 @@ export const Button = ({
         rounded-xl px-4 py-2 flex items-center justify-center gap-x-2
       `}
     >
-      <span>{text}</span>
-      {icon && <span>{icon}</span>}
+      {loading ? (
+       <Loader smaillerSize={true}/>
+      ) : (
+        <>
+          <span>{text}</span>
+          {icon && <span>{icon}</span>}
+        </>
+      )}
     </button>
   );
 };

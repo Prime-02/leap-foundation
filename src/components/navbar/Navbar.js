@@ -1,5 +1,5 @@
 "use client";
-import React, {useState } from "react";
+import React, {useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "../../../public/assets/toWEBP/logo.webp";
 import { navItems } from "../index/Index";
@@ -7,15 +7,17 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Modal from "../Modal/Modal";
 import { Textinput } from "../inputs/Textinput";
-import { createUser, signIn } from "../../../lib/appwrite";
+import { ActiveSession, createUser, signIn } from "../../../lib/appwrite";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const NavTwo = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
-  const nav = useRouter()
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const nav = useRouter();
 
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [signUpForm, setSignUpForm] = useState({
@@ -25,28 +27,32 @@ const NavTwo = () => {
     confirmPassword: "",
   });
 
-  const loginSubmit = async(e) => {
+    const checkSession = useCallback(async () => {
+      const session = await ActiveSession();
+      setIsLoggedIn(session); // Cache session status
+      console.log(session);
+      
+    }, []);
+
+  const loginSubmit = async (e) => {
     e.preventDefault();
     if (!loginForm.email || !loginForm.password) {
-      alert("Fill in all fields");
+      toast.info("Fill in all fields");
       return;
     }
-   setSubmitting(true)
-   try {
-    const result = await signIn(
-      loginForm.email,
-      loginForm.password
-    )
-    alert("Login Successful");
-    nav.push('/admin')
-   } catch (error) {
-    alert('Error', error.message)
-   }finally{
-    setSubmitting(false)
-   }
+    setSubmitting(true);
+    try {
+      const result = await signIn(loginForm.email, loginForm.password);
+      toast.success("Login Successful");
+      nav.push("/admin");
+    } catch (error) {
+      toast.error("Error", error.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const signUpSubmit = async(e) => {
+  const signUpSubmit = async (e) => {
     e.preventDefault();
     if (
       !signUpForm.userName ||
@@ -54,27 +60,39 @@ const NavTwo = () => {
       !signUpForm.password ||
       !signUpForm.confirmPassword
     ) {
-      alert("Fill in all fields");
+      toast.info("Fill in all fields");
       return;
     }
     if (signUpForm.password !== signUpForm.confirmPassword) {
-      alert("Passwords do not match");
+      toast.warn("Passwords do not match");
     }
-     setSubmitting(true);
+    setSubmitting(true);
     try {
       const result = await createUser(
         signUpForm.email,
         signUpForm.password,
         signUpForm.userName
-      )
-      nav.push('/admin')
-      alert("Sign Up Successful");
+      );
+      nav.push("/admin");
+      toast.success("Sign Up Successful");
     } catch (error) {
-      alert('Error', error.message)
+      toast.error("Error", error.message);
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    checkSession(); // Check session on mount
+  }, [checkSession]);
+
+    const handleLogoClick = async () => {
+      if (isLoggedIn) {
+        nav.push("/admin");
+      } else {
+        setLoginModal(true);
+      }
+    };
 
   return (
     <>
@@ -86,7 +104,7 @@ const NavTwo = () => {
               alt="Logo"
               className="object-cover rounded-full"
               fill
-              onClick={() => setSignUpModal(!signUpModal)}
+              onClick={handleLogoClick}
             />
           </div>
           <div className="flex items-center">
@@ -137,9 +155,9 @@ const NavTwo = () => {
         onClose={() => setLoginModal(!loginModal)}
         onSubmit={loginSubmit}
         title={`Login`}
-        buttonValue={`
-          ${isSubmitting ? "Just a Second..." : "Login"}
-          `}
+        loading={isSubmitting}
+        disabled={isSubmitting}
+        buttonValue={"Login"}
       >
         <div>
           <Textinput
@@ -176,7 +194,9 @@ const NavTwo = () => {
         isOpen={signUpModal}
         onClose={() => setSignUpModal(!signUpModal)}
         title={"Sign Up"}
-        buttonValue={`${isSubmitting ? "Just a Second..." : "Submit"}`}
+        loading={isSubmitting}
+        disabled={isSubmitting}
+        buttonValue={"Sign Up"}
       >
         <div>
           <Textinput

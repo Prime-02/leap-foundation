@@ -2,8 +2,9 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GetAllPosts, getCurrentUser } from "../../lib/appwrite";
+import { GetAllPosts, GetAllServices, getCurrentUser } from "../../lib/appwrite";
 import { useRouter } from "next/navigation";
+
 
 // Create context
 const GlobalStateContext = createContext();
@@ -14,6 +15,7 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [services, setServices] = useState([])
 
   const fetchUser = useCallback( async () => {
     try {
@@ -28,6 +30,8 @@ const GlobalProvider = ({ children }) => {
       }
     } catch (error) {
       console.error("Error fetching user:", error);
+      router.replace("/");
+      toast.warn("Please login to continue");  
     } finally {
       setIsLoading(false); // Reset loading state
     }
@@ -48,6 +52,23 @@ const GlobalProvider = ({ children }) => {
   useEffect(()=>{
     fetchPosts()
   }, [posts])
+
+
+  const fetchServices = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const data = await GetAllServices();
+      setServices(data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [])
+
+  useEffect(()=>{
+    fetchServices()
+  }, [services])
   
 
   return (
@@ -66,7 +87,7 @@ const GlobalProvider = ({ children }) => {
         limit={2}
       />
       <GlobalStateContext.Provider
-        value={{ isLoading, isLoggedIn, user, fetchUser, posts, fetchPosts }}
+        value={{ isLoading, isLoggedIn, user, fetchUser, posts, fetchPosts, fetchServices, services }}
       >
         {children}
       </GlobalStateContext.Provider>

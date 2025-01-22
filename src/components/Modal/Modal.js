@@ -37,8 +37,8 @@ const Modal = ({ isOpen, onClose, title, children, onSubmit, disabled, loading, 
             ) : (
               <Button
                 text={buttonValue}
-                // disabled={disabled}
-                // loading={loading}
+                disabled={disabled}
+                loading={loading}
               />
             )}
             {subChildren && subChildren}

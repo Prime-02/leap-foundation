@@ -111,7 +111,7 @@ const page = () => {
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="h-full w-1/2 relative flex items-center justify-center rounded-r-full overflow-hidden bg-black"
+          className="h-full w-1/2 relative flex items-center justify-center rounded-r-full overflow-hidden "
         >
           <Image
             src={BG3}
