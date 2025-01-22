@@ -14,6 +14,7 @@ import {
 import { useGlobalState } from "@/app/GlobalProvider";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const SideBar = () => {
   const [title, setTitle] = useState("");
@@ -26,6 +27,7 @@ const SideBar = () => {
   const [serviceDescription, setServiceDescription] = useState(""); // Service description state
   const [serviceFile, setServiceFile] = useState(null); // Service file state
   const [aside, setAside] = useState(false);
+  const nav = useRouter();
 
   const { user, fetchUser, fetchPosts } = useGlobalState();
 
@@ -104,18 +106,20 @@ const SideBar = () => {
     }
   };
 
-  const logOut = async () => {
-    setLoading(true);
-    try {
-      await AdminLogOut();
-    } catch (error) {
-      toast.error("Error Logging Out", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+const logOut = async () => {
+  setLoading(true);
+  try {
+    await AdminLogOut(); // Make sure AdminLogOut doesn't use hooks
+    toast.success("Logged out successfully.");
+    nav.push("/");
 
-  console.log(user);
+  } catch (error) {
+    toast.error("Error Logging Out: " + (error?.message || error));
+  } finally {
+    setLoading(false); // Keep this inside the component
+  }
+};
+
 
   return (
     <>
@@ -133,7 +137,7 @@ const SideBar = () => {
             </span>
           </div>
         </div>
-        <div className="cursor-pointe md:hidden" onClick={() => setAside(!aside)}>
+        <div className="cursor-pointer md:hidden" onClick={() => setAside(!aside)}>
           {!aside ? <Menu size={24} /> : <X size={24} />}
         </div>
       </header>
@@ -162,16 +166,28 @@ const SideBar = () => {
         </div>
         <div className="flex flex-col gap-y-5">
           <Link
+            
+            onClick={()=>setAside(false)}
             href={"/admin"}
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
           >
             View Events Posts
           </Link>
           <Link
+            
+            onClick={()=>setAside(false)}
             href={"/admin/services"}
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
           >
             View Services Posts
+          </Link>
+          <Link
+            
+            onClick={()=>setAside(false)}
+            href={"/admin/gallery"}
+            className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
+          >
+            View Gallery
           </Link>
           <span
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"

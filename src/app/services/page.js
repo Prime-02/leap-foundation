@@ -2,9 +2,13 @@
 import { Blobs, LPServices } from "@/components/index/Index";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useGlobalState } from "../GlobalProvider";
+import FilePreview from "@/components/media/FilePreview";
 
 const ServicesSection = () => {
-   const [visibleBlobs, setVisibleBlobs] = useState([]);    
+   const [visibleBlobs, setVisibleBlobs] = useState([]);  
+   const {services} = useGlobalState()  
+   const LPServices = services
         
           // Randomly generate visible blobs with random positions
           useEffect(() => {
@@ -45,16 +49,16 @@ const ServicesSection = () => {
               key={index}
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform z-10 duration-300"
             >
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-48 object-cover"
-              />
+              <div className="w-full h-48 overflow-hidden flex items-center justify-center">
+                <FilePreview
+                fileUrl={service.fileUrl}
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-green-800 mb-4">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{service.description}</p>
+                <p className="text-gray-600 text-sm">{service.desc}</p>
               </div>
             </div>
           ))}

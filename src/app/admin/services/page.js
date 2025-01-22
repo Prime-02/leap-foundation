@@ -93,7 +93,7 @@ const Page = () => {
       {/* Navigation Bar */}
       <nav className="w-full min-h-16 flex items-start justify-between pt-5 flex-col bg-white shadow-md">
         <h1 className="text-4xl text-center font-extrabold w-full text-green-800 mb-12">
-          Events
+          Services
         </h1>
         <div className="w-full justify-around flex items-center">
           <div
@@ -136,7 +136,7 @@ const Page = () => {
               .map((event, index) => (
                 <div key={index} className="flex flex-col items-center gap-8">
                   {/* Media Section */}
-                  <div className="w-full rounded-2xl relative">
+                  <div className="w-full rounded-2xl relative flex items-center justify-center">
                     {currPage && event.admin?.$id === user?.$id && (
                       <span
                         className="absolute top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"

@@ -1,10 +1,20 @@
 "use client";
-import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GetAllPosts, GetAllServices, getCurrentUser } from "../../lib/appwrite";
+import {
+  fetchAllFiles,
+  GetAllPosts,
+  GetAllServices,
+  getCurrentUser,
+} from "../../lib/appwrite";
 import { useRouter } from "next/navigation";
-
 
 // Create context
 const GlobalStateContext = createContext();
@@ -15,9 +25,10 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
-  const [services, setServices] = useState([])
+  const [services, setServices] = useState([]);
+  const [files, setFiles] = useState(null);
 
-  const fetchUser = useCallback( async () => {
+  const fetchUser = useCallback(async () => {
     try {
       setIsLoading(true); // Indicate loading state
       const res = await getCurrentUser();
@@ -31,11 +42,11 @@ const GlobalProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching user:", error);
       router.replace("/");
-      toast.warn("Please login to continue");  
+      toast.warn("Please login to continue");
     } finally {
       setIsLoading(false); // Reset loading state
     }
-  }, [])
+  }, []);
 
   const fetchPosts = useCallback(async () => {
     setIsLoading(true);
@@ -47,12 +58,7 @@ const GlobalProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [])
-
-  useEffect(()=>{
-    fetchPosts()
-  }, [posts])
-
+  }, []);
 
   const fetchServices = useCallback(async () => {
     setIsLoading(true);
@@ -64,12 +70,30 @@ const GlobalProvider = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [])
+  }, []);
+  const fetchFiles = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const data = await fetchAllFiles();
+      setFiles(data);
+    } catch (error) {
+      console.error("Error fetching services:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
-  useEffect(()=>{
-    fetchServices()
-  }, [services])
-  
+  useEffect(() => {
+    fetchPosts();
+  }, [posts]);
+
+  useEffect(() => {
+    fetchServices();
+  }, [services]);
+
+  useEffect(() => {
+    fetchFiles();
+  }, [files]);
 
   return (
     <>
@@ -87,7 +111,18 @@ const GlobalProvider = ({ children }) => {
         limit={2}
       />
       <GlobalStateContext.Provider
-        value={{ isLoading, isLoggedIn, user, fetchUser, posts, fetchPosts, fetchServices, services }}
+        value={{
+          isLoading,
+          isLoggedIn,
+          user,
+          fetchUser,
+          posts,
+          fetchPosts,
+          fetchServices,
+          services,
+          fetchFiles,
+          files,
+        }}
       >
         {children}
       </GlobalStateContext.Provider>
