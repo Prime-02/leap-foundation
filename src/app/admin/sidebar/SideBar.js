@@ -133,7 +133,7 @@ const SideBar = () => {
             </span>
           </div>
         </div>
-        <div className="cursor-pointer" onClick={() => setAside(!aside)}>
+        <div className="cursor-pointe md:hidden" onClick={() => setAside(!aside)}>
           {!aside ? <Menu size={24} /> : <X size={24} />}
         </div>
       </header>

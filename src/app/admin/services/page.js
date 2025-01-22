@@ -4,14 +4,16 @@ import { useGlobalState } from "../../GlobalProvider";
 import FilePreview from "@/components/media/FilePreview";
 import { Edit, Trash } from "lucide-react";
 import Modal from "@/components/Modal/Modal";
-import { deleteEvent, updateField } from "../../../../lib/appwrite";
+import { deleteServices, updateServiceField } from "../../../../lib/appwrite";
 import { Textinput } from "@/components/inputs/Textinput";
 import { Button } from "@/components/reusables/buttons/Buttons";
 import { toast } from "react-toastify";
 import { Loader } from "@/components/Loader/Loader";
 
+
+
 const Page = () => {
-  const { services, user, fetchServices, fetchUser } = useGlobalState(); // Add `fetchPosts` to refresh data
+  const { services, user, fetchServices, fetchUser } = useGlobalState(); // Add `fetchServices` to refresh data
   const [currPage, setCurrPage] = useState(true);
   const [modal, setModal] = useState(false);
   const [docId, setDocId] = useState(null);
@@ -49,11 +51,11 @@ const Page = () => {
     }
   };
 
-  const DeleteEvent = async (id) => {
+  const DeleteServices = async (id) => {
     setLoading("deleting"); // Set loading to true during delete
     try {
-      await deleteEvent(id);
-      fetchPosts(); // Refresh posts after delete
+      await deleteServices(id);
+      fetchServices(); // Refresh posts after delete
     } catch (error) {
       console.log("Error deleting event:", error);
     } finally {
@@ -72,13 +74,13 @@ const Page = () => {
         if (!selectedFile) return toast.info("Please select a file to upload.");
 
         // Upload the file using the updateField function
-        await updateField(docId, "fileUrl", null, selectedFile); // Update with the selected file
+        await updateServiceField(docId, "fileUrl", null, selectedFile); // Update with the selected file
       } else if (docValue.trim()) {
-        await updateField(docId, docType, docValue); // Update with the docValue
+        await updateServiceField(docId, docType, docValue); // Update with the docValue
       }
 
       setModal(false); // Close modal after successful update
-      fetchPosts(); // Refresh posts to reflect changes
+      fetchServices(); // Refresh posts to reflect changes
     } catch (error) {
       console.error("Failed to update post:", error.message);
     } finally {
@@ -126,20 +128,15 @@ const Page = () => {
               : "All Leap Foundation Services"}
           </h1>
 
-          <div className="space-y-16">
-            {posts
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-2 ">
+            {services
               .filter((event) =>
                 currPage ? event.admin?.$id === user?.$id : true
               )
               .map((event, index) => (
-                <div
-                  key={index}
-                  className={`flex flex-col ${
-                    index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-                  } items-center gap-8`}
-                >
+                <div key={index} className="flex flex-col items-center gap-8">
                   {/* Media Section */}
-                  <div className="w-full lg:w-1/2 rounded-2xl relative">
+                  <div className="w-full rounded-2xl relative">
                     {currPage && event.admin?.$id === user?.$id && (
                       <span
                         className="absolute top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"
@@ -154,7 +151,7 @@ const Page = () => {
                   </div>
 
                   {/* Text Section */}
-                  <div className="w-full lg:w-1/2">
+                  <div className="w-full">
                     <div className="flex justify-between items-center relative">
                       <h3 className="text-3xl font-bold text-green-800 mb-4">
                         {event.title}
@@ -187,7 +184,7 @@ const Page = () => {
                       <Button
                         text={loading === "fileUrl" ? "Deleting..." : "Delete"}
                         icon={<Trash size={15} />}
-                        onClick={() => DeleteEvent(event?.$id)}
+                        onClick={() => DeleteServices(event?.$id)}
                         disabled={loading === "fileUrl"} // Disable delete if fileUrl update is in progress
                         loading={loading === "deleting"}
                       />
@@ -197,7 +194,7 @@ const Page = () => {
               ))}
 
             {/* No Posts Fallback */}
-            {posts.filter((event) =>
+            {services.filter((event) =>
               currPage ? event.admin?.$id === user?.$id : true
             ).length === 0 && (
               <p className="text-center text-gray-600 text-lg">
