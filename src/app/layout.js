@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Leap Foudation",
+  title: "Leap Foundation Nigeria",
   description: "Empowering Young Minds, Shaping Bright Futures",
 };
 

@@ -21,6 +21,7 @@ const Page = () => {
   const [docValue, setDocValue] = useState(""); // Store value to edit
   const [selectedFile, setSelectedFile] = useState(null); // Store selected file
   const [loading, setLoading] = useState(null);
+  const [fileId, setFileId] = useState(null)
 
   // Function to open the modal for editing
   const openEditModal = (id, type, value) => {
@@ -52,10 +53,11 @@ const Page = () => {
   };
 
   const DeleteServices = async (id) => {
-    setLoading("deleting"); // Set loading to true during delete
+    setLoading(`deleting-${fileId}`); // Set loading to true during delete
     try {
       await deleteServices(id);
       fetchServices(); // Refresh posts after delete
+      setFileId(null)
     } catch (error) {
       console.log("Error deleting event:", error);
     } finally {
@@ -184,7 +186,7 @@ const Page = () => {
                       <Button
                         text={loading === "fileUrl" ? "Deleting..." : "Delete"}
                         icon={<Trash size={15} />}
-                        onClick={() => DeleteServices(event?.$id)}
+                        onClick={() => setFileId(event?.$id)}
                         disabled={loading === "fileUrl"} // Disable delete if fileUrl update is in progress
                         loading={loading === "deleting"}
                       />
@@ -234,6 +236,23 @@ const Page = () => {
             labelStyle={"bg-white"}
           />
         )}
+      </Modal>
+      <Modal
+        onClose={() => setFileId(null)}
+        isOpen={fileId}
+        title={"Are you sure you want to delete this file"}
+        onSubmit={(e)=>{
+          e.preventDefault();
+          DeleteServices(fileId);
+        }}
+        buttonValue={`Continue`}
+        loading={loading === `deleting-${fileId}`}
+        disabled={loading === `deleting-${fileId}`}
+      >
+        <p className="text-sm mb-6 text-gray-600">
+          This action cannot be undone. The selected file will be permanently
+          removed.
+        </p>
       </Modal>
     </>
   );
