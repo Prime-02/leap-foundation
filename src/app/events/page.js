@@ -21,11 +21,17 @@ const EventsPage = () => {
                   index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
                 } items-center gap-8`}
               >
-                <div className="w-full lg:w-1/2">
+                <div className="w-full lg:w-1/2 h-[50dvh] ">
                   {event?.fileUrl ? (
-                    <FilePreview fileUrl={event?.fileUrl} />
+                    <FilePreview
+                      fileUrl={event?.fileUrl}
+                      className={`w-full h-full`}
+                    />
                   ) : event?.fileUrl ? (
-                    <FilePreview fileUrl={event?.fileUrl} />
+                    <FilePreview
+                      fileUrl={event?.fileUrl}
+                      className={`w-full h-full`}
+                    />
                   ) : null}
                 </div>
 

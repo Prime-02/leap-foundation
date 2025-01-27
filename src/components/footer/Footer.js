@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Social Media Links */}
           <div className="w-full sm:w-1/2 mb-8 sm:mb-0">
             <h3 className="text-xl sm:text-2xl font-semibold mb-4">Connect</h3>
-            <ul className="list-none space-y-2 flex gap-x-4 items-center justify-start ">
+            <ul className="list-none space-y-2 flex gap-x-4 items-center flex-wrap justify-start ">
               <li>
                 <Link href="/" className=" hover:text-white">
                   <RiInstagramLine size={20} className="mt-2" />

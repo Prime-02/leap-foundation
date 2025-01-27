@@ -44,9 +44,9 @@ const page = () => {
         </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {files?.map((file) => (
-            <li key={file.$id} className="relative rounded-lg overflow-hidden">
+            <li key={file.$id} className="relative rounded-lg h-[5odvh] overflow-hidden">
               {/* File Preview */}
-              <FilePreview fileUrl={file.url} />
+              <FilePreview fileUrl={file.url} className={`h-full w-full`} />
 
               {/* Date Display */}
               <div className="absolute top-2 left-2 bg-green-100 text-green-800 text-xs font-semibold rounded-md px-2 py-1 shadow">

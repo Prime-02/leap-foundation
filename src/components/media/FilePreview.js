@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
-const FilePreview = ({ fileUrl }) => {
+const FilePreview = ({ fileUrl, className }) => {
   const [fileType, setFileType] = useState(null); // Either "image", "video", or null
   const [loading, setLoading] = useState(true);
 
@@ -40,14 +40,14 @@ const FilePreview = ({ fileUrl }) => {
         width={400}
         height={400}
         alt="Media Preview"
-        className="object-cover border rounded-lg"
+        className={`object-cover border rounded-lg ${className}`}
       />
     );
   }
 
   if (fileType === "video") {
     return (
-      <video controls className="w-full h-auto rounded-lg">
+      <video controls className={`w-full h-auto rounded-lg ${className}`}>
         <source src={fileUrl} type="video/mp4" />
         <source src={fileUrl} type="video/webm" />
         <source src={fileUrl} type="video/ogg" />

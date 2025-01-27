@@ -91,27 +91,27 @@ const Page = () => {
     <>
       {/* Navigation Bar */}
       <nav className="w-full min-h-16 flex items-start justify-between pt-5 flex-col bg-white shadow-md">
-                  <h1 className="text-4xl text-center font-extrabold w-full text-green-800 mb-12">
-                    Events
-                  </h1>
+        <h1 className="text-4xl text-center font-extrabold w-full text-green-800 mb-12">
+          Events
+        </h1>
         <div className="w-full justify-around flex items-center">
-        <div
-          className={`cursor-pointer text-lg font-semibold ${
-            !currPage ? "text-green-800" : "text-gray-500"
+          <div
+            className={`cursor-pointer text-lg font-semibold ${
+              !currPage ? "text-green-800" : "text-gray-500"
             }`}
             onClick={() => setCurrPage(false)}
-            >
-          All Posts
-        </div>
-        <div
-          className={`cursor-pointer text-lg font-semibold ${
-            currPage ? "text-green-800" : "text-gray-500"
+          >
+            All Posts
+          </div>
+          <div
+            className={`cursor-pointer text-lg font-semibold ${
+              currPage ? "text-green-800" : "text-gray-500"
             }`}
             onClick={() => setCurrPage(true)}
-            >
-          Your Posts
-        </div>
+          >
+            Your Posts
           </div>
+        </div>
         <span
           className={` w-1/2 h-1 rounded-full bg-green-800 bottom-0 left-0 transition-transform duration-500 
             ${currPage ? "translate-x-full" : "translate-x-0"}`}
@@ -140,7 +140,7 @@ const Page = () => {
                   } items-center gap-8`}
                 >
                   {/* Media Section */}
-                  <div className="w-full lg:w-1/2 rounded-2xl relative">
+                  <div className="w-full lg:w-1/2 rounded-2xl h-[50dvh] relative">
                     {currPage && event.admin?.$id === user?.$id && (
                       <span
                         className="absolute top-2 left-3 text-green-800 bg-green-200 rounded-full w-8 h-8 justify-center items-center flex cursor-pointer"
@@ -151,7 +151,10 @@ const Page = () => {
                         <Edit size={15} />
                       </span>
                     )}
-                    <FilePreview fileUrl={event.fileUrl} />
+                    <FilePreview
+                      fileUrl={event.fileUrl}
+                      className={`w-full h-full`}
+                    />
                   </div>
 
                   {/* Text Section */}
@@ -216,7 +219,7 @@ const Page = () => {
         onClose={() => setModal(false)}
         isOpen={modal}
         title={`Update ${docType}`}
-        buttonValue={'Update'}
+        buttonValue={"Update"}
         disabled={loading}
         loading={loading}
         onSubmit={handleUpdate}
