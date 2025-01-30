@@ -29,7 +29,7 @@ const page = () => {
 
   useEffect(() => {
     toast.info(
-      "Images displayed here are used in events and services, please be cautious when deleting"
+      "Images displayed here are used in the events page, please be cautious when deleting"
     );
   }, []);
 
