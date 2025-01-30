@@ -92,34 +92,32 @@ const SideBar = () => {
         serviceDescription,
         user.$id
       );
-      toast.success("Service uploaded successfully!");
-      console.log("Service details:", service);
+      toast.success("Image uploaded successfully!");
+      console.log("Images details:", service);
       // Clear inputs after successful upload
       setServiceTitle("");
       setServiceDescription("");
       setServiceFile(null);
       setServiceModal(false);
     } catch (error) {
-      toast.error("Failed to upload service. Please try again.");
+      toast.error("Failed to upload Image. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
-const logOut = async () => {
-  setLoading(true);
-  try {
-    await AdminLogOut(); // Make sure AdminLogOut doesn't use hooks
-    toast.success("Logged out successfully.");
-    nav.push("/");
-
-  } catch (error) {
-    toast.error("Error Logging Out: " + (error?.message || error));
-  } finally {
-    setLoading(false); // Keep this inside the component
-  }
-};
-
+  const logOut = async () => {
+    setLoading(true);
+    try {
+      await AdminLogOut(); // Make sure AdminLogOut doesn't use hooks
+      toast.success("Logged out successfully.");
+      nav.push("/");
+    } catch (error) {
+      toast.error("Error Logging Out: " + (error?.message || error));
+    } finally {
+      setLoading(false); // Keep this inside the component
+    }
+  };
 
   return (
     <>
@@ -137,7 +135,10 @@ const logOut = async () => {
             </span>
           </div>
         </div>
-        <div className="cursor-pointer md:hidden" onClick={() => setAside(!aside)}>
+        <div
+          className="cursor-pointer md:hidden"
+          onClick={() => setAside(!aside)}
+        >
           {!aside ? <Menu size={24} /> : <X size={24} />}
         </div>
       </header>
@@ -166,24 +167,22 @@ const logOut = async () => {
         </div>
         <div className="flex flex-col gap-y-5">
           <Link
-            
-            onClick={()=>setAside(false)}
+            onClick={() => setAside(false)}
             href={"/admin"}
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
           >
-            View Events Posts
+            View Events
           </Link>
-          <Link
+          {/* <Link
             
             onClick={()=>setAside(false)}
             href={"/admin/services"}
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
           >
             View Services Posts
-          </Link>
+          </Link> */}
           <Link
-            
-            onClick={()=>setAside(false)}
+            onClick={() => setAside(false)}
             href={"/admin/gallery"}
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
           >
@@ -193,13 +192,13 @@ const logOut = async () => {
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
             onClick={() => setModal(true)}
           >
-            Add Events Post
+            Add Events
           </span>
           <span
             className="text-green-800 hover:underline cursor-pointer text-lg font-semibold"
             onClick={() => setServiceModal(true)}
           >
-            Add services Post
+            Add Image To Gallery
           </span>
         </div>
 
@@ -266,16 +265,16 @@ const logOut = async () => {
 
       {/* Modal for Uploading Services */}
       <Modal
-        title={"Add New Service"}
+        title={"Add New Image"}
         isOpen={serviceModal}
         onClose={() => setServiceModal(!serviceModal)}
-        buttonValue={"Upload Post"}
+        buttonValue={"Upload"}
         loading={loading}
         disabled={loading}
         onSubmit={handleServiceSubmit}
       >
         <div className="flex flex-col gap-4">
-          <div>
+          {/* <div>
             <Textinput
               type="text"
               label={"Service Title"}
@@ -296,14 +295,12 @@ const logOut = async () => {
               className="mt-1 border-b"
               labelStyle={"bg-white"}
             />
-          </div>
+          </div> */}
           <div>
             <label
               htmlFor="serviceFile"
               className="block text-sm font-medium text-gray-700"
-            >
-              Upload Image/Video
-            </label>
+            ></label>
             <input
               type="file"
               id="serviceFile"

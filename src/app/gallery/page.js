@@ -7,8 +7,8 @@ import FilePreview from "@/components/media/FilePreview";
 
 const ServicesSection = () => {
    const [visibleBlobs, setVisibleBlobs] = useState([]);  
-   const {services} = useGlobalState()  
-   const LPServices = services
+   const {files} = useGlobalState()  
+   const LPServices = files
         
           // Randomly generate visible blobs with random positions
           useEffect(() => {
@@ -41,24 +41,18 @@ const ServicesSection = () => {
       </div>
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center text-green-800 mb-12 z-10">
-          Our Services
+          Gallery 
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {LPServices.map((service, index) => (
+          {LPServices?.map((service, index) => (
             <div
               key={index}
               className="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform z-10 duration-300"
             >
-              <div className="w-full h-48 overflow-hidden flex items-center justify-center">
+              <div className="w-full h-[50dvh] overflow-hidden flex items-center justify-center">
                 <FilePreview
-                fileUrl={service.fileUrl}
+                fileUrl={service.url} className={`h-full w-full object-cover hover:scale-105`}
                 />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-green-800 mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{service.desc}</p>
               </div>
             </div>
           ))}
